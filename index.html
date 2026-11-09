@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>A Special Surprise For Anjali ❤️</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #ff758c 0%, #ff7eb3 50%, #ffb199 100%);
+            --glass-bg: rgba(255, 255, 255, 0.2);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --text-color: #ffffff;
+            --accent-pink: #ff2a6d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #2a081c;
+            color: var(--text-color);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Romantic Warm Pink & Peach Background Canvas */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: linear-gradient(135deg, #3d0c2c 0%, #701c4c 50%, #a2396e 100%);
+        }
+
+        /* Audio Toggle Button */
+        .music-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 8px 32px 0 rgba(255, 42, 109, 0.37);
+            transition: all 0.3s ease;
+        }
+
+        .music-toggle.playing {
+            animation: pulse-ring 2s infinite;
+            color: #ffe6eb;
+            border-color: #ff758c;
+            background: rgba(255, 117, 140, 0.4);
+        }
+
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(255, 117, 140, 0.6); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 117, 140, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 117, 140, 0); }
+        }
+
+        /* Container & Sections */
+        .container {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section {
+            display: none;
+            width: 100%;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .section.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Glassmorphism Cards with Soft Pink Glow */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 28px;
+            padding: 35px 22px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(70, 10, 40, 0.4);
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Typography & Headings */
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #ffe6eb, #ffb3c6, #ff758c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Poppins', sans-serif;
+            text-shadow: 0 2px 10px rgba(255, 117, 140, 0.3);
+        }
+
+        .script-font {
+            font-family: 'Sacramento', cursive;
+            font-size: 3.8rem;
+            color: #ffccd5;
+            line-height: 1.1;
+            margin-bottom: 10px;
+            text-shadow: 0 0 25px rgba(255, 117, 140, 0.8);
+        }
+
+        p {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: rgba(255, 240, 245, 0.95);
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        /* Buttons & Interactions */
+        .magical-btn {
+            background: linear-gradient(135deg, #ff477e 0%, #ff758c 50%, #ff9a9e 100%);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(255, 71, 126, 0.6);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .magical-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* 1. Welcome Screen */
+        .welcome-avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff758c, #ff2a6d);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin: 0 auto 20px;
+            box-shadow: 0 0 35px rgba(255, 71, 126, 0.8);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* 3. Compliments Section Grid */
+        .compliments-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .compliment-card {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 16px 18px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: transform 0.3s ease, background 0.3s ease;
+            text-align: left;
+        }
+
+        .compliment-card i {
+            font-size: 1.4rem;
+            color: #ffe6eb;
+            background: rgba(255, 117, 140, 0.3);
+            padding: 12px;
+            border-radius: 14px;
+        }
+
+        .compliment-card span {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        /* 4. Endless Love Floating Ticker */
+        .ticker-container {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+        }
+
+        .ticker-track {
+            position: absolute;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            animation: scrollUp 15s linear infinite;
+        }
+
+        .ticker-item {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 14px;
+            border-radius: 14px;
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: #ffe6eb;
+        }
+
+        @keyframes scrollUp {
+            0% { transform: translateY(100%); }
+            100% { transform: translateY(-100%); }
+        }
+
+        /* 5. Interactive Surprise Gift Box */
+        .gift-box-wrapper {
+            cursor: pointer;
+            padding: 25px;
+            transition: transform 0.3s ease;
+        }
+
+        .gift-box {
+            font-size: 5.5rem;
+            color: #ff477e;
+            filter: drop-shadow(0 0 25px rgba(255, 71, 126, 0.8));
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-15px); }
+            60% { transform: translateY(-8px); }
+        }
+
+        .gift-reveal {
+            display: none;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #fff;
+            margin-top: 15px;
+            background: rgba(255, 71, 126, 0.3);
+            border: 1px solid rgba(255, 117, 140, 0.5);
+            padding: 16px;
+            border-radius: 16px;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* 6. Special Message Letter */
+        .letter-content {
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #fff0f3;
+            text-align: left;
+            position: relative;
+            padding: 10px;
+        }
+
+        .letter-content::before {
+            content: '\f10d';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 2.2rem;
+            color: rgba(255, 182, 193, 0.25);
+            position: absolute;
+            top: -12px;
+            left: -5px;
+        }
+
+        /* 7. Final Screen */
+        .giant-heart {
+            font-size: 6rem;
+            color: #ff2a6d;
+            animation: heartbeat 1.2s infinite;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 0 30px rgba(255, 42, 109, 0.8));
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            15% { transform: scale(1.2); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.15); }
+        }
+
+        /* Navigation Pagination Dots */
+        .pagination-dots {
+            display: flex;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.35);
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            width: 26px;
+            border-radius: 4px;
+            background: #ff758c;
+            box-shadow: 0 0 10px rgba(255, 117, 140, 0.8);
+        }
+
+        /* Clickable Sparkle Effect */
+        .click-sparkle {
+            position: absolute;
+            pointer-events: none;
+            font-size: 1.3rem;
+            animation: flyAway 0.8s forwards ease-out;
+            z-index: 999;
+        }
+
+        @keyframes flyAway {
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(var(--tx), var(--ty)) scale(0.3); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Canvas Background Particles -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Music Toggle Button -->
+    <button class="music-toggle" id="musicToggle" onclick="toggleAudio()" title="Play Magical Music">
+        <i class="fa-solid fa-music" id="musicIcon"></i>
+    </button>
+
+    <div class="container">
+
+        <!-- SECTION 1: Welcome Screen -->
+        <div class="section active" id="sec-0">
+            <div class="glass-card">
+                <div class="welcome-avatar">
+                    <i class="fa-solid fa-wand-magic-sparkles" style="color: #fff; font-size: 2.5rem;"></i>
+                </div>
+                <h1 style="font-size: 1.8rem; margin-bottom: 10px;">Hey Beautiful Anjali! 💗</h1>
+                <p>Someone made something special just for you, filled with warmth, smiles, and magical vibes...</p>
+                <button class="magical-btn" onclick="nextSection()">
+                    Open Your Surprise <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+            <div class="pagination-dots">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: Special Introduction -->
+        <div class="section" id="sec-1">
+            <div class="glass-card">
+                <div class="script-font">ANJALI ❤️</div>
+                <p style="margin-top: 15px;">Some people make ordinary moments feel magical...</p>
+                <p>And you are undeniably one of those extraordinarily special people who brighten up every space.</p>
+                <button class="magical-btn" onclick="nextSection()">
+                    Continue Journey <i class="fa-solid fa-heart"></i>
+                </button>
+            </div>
+            <div class="pagination-dots">
+                <div class="dot"></div>
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: Compliments Section -->
+        <div class="section" id="sec-2">
+            <div class="glass-card" style="padding: 22px;">
+                <h1 style="font-size: 1.6rem; margin-bottom: 20px;">Why You're Amazing</h1>
+                <div class="compliments-grid">
+                    <div class="compliment-card">
+                        <i class="fa-solid fa-face-smile"></i>
+                        <span>Your Smile Is Magical 😊</span>
+                    </div>
+                    <div class="compliment-card">
+                        <i class="fa-solid fa-seedling"></i>
+                        <span>You Are One Of A Kind 🌸</span>
+                    </div>
+                    <div class="compliment-card">
+                        <i class="fa-solid fa-star"></i>
+                        <span>Your Beauty Is Beyond Words ✨</span>
+                    </div>
+                    <div class="compliment-card">
+                        <i class="fa-solid fa-gem"></i>
+                        <span>Your Personality Is Precious 💕</span>
+                    </div>
+                    <div class="compliment-card">
+                        <i class="fa-solid fa-butterfly"></i>
+                        <span>Keep Smiling Always 🦋</span>
+                    </div>
+                </div>
+                <button class="magical-btn" onclick="nextSection()" style="margin-top: 20px;">
+                    Next Surprise <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+            <div class="pagination-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: Endless Love & Cute Messages -->
+        <div class="section" id="sec-3">
+            <div class="glass-card">
+                <h1 style="font-size: 1.6rem; margin-bottom: 15px;">Vibes For You 💌</h1>
+                <div class="ticker-container">
+                    <div class="ticker-track">
+                        <div class="ticker-item">Stay Happy Anjali ❤️</div>
+                        <div class="ticker-item">You Are Special 🌷</div>
+                        <div class="ticker-item">Never Stop Smiling 😊</div>
+                        <div class="ticker-item">Keep Shining Like A Star ⭐</div>
+                        <div class="ticker-item">Sending You Lots Of Happiness 💗</div>
+                        <div class="ticker-item">You Deserve All The Beautiful Things In Life 🥰</div>
+                        <!-- Loop duplicates for smooth scroll -->
+                        <div class="ticker-item">Stay Happy Anjali ❤️</div>
+                        <div class="ticker-item">You Are Special 🌷</div>
+                        <div class="ticker-item">Never Stop Smiling 😊</div>
+                        <div class="ticker-item">Keep Shining Like A Star ⭐</div>
+                        <div class="ticker-item">Sending You Lots Of Happiness 💗</div>
+                        <div class="ticker-item">You Deserve All The Beautiful Things In Life 🥰</div>
+                    </div>
+                </div>
+                <button class="magical-btn" onclick="nextSection()" style="margin-top: 15px;">
+                    Open Gift Box <i class="fa-solid fa-gift"></i>
+                </button>
+            </div>
+            <div class="pagination-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: Interactive Surprise Gift Box -->
+        <div class="section" id="sec-4">
+            <div class="glass-card">
+                <h1 style="font-size: 1.6rem; margin-bottom: 10px;">Tap The Magic Box!</h1>
+                <p style="font-size: 0.9rem; margin-bottom: 5px;">What could be hidden inside?</p>
+                <div class="gift-box-wrapper" onclick="openGiftBox()">
+                    <div class="gift-box" id="giftIcon">🎁</div>
+                </div>
+                <div class="gift-reveal" id="giftRevealText">
+                    Surprise Anjali! You Are Truly Amazing! 💝✨
+                </div>
+                <button class="magical-btn" id="giftNextBtn" onclick="nextSection()" style="display: none; margin-top: 20px;">
+                    Read Special Letter <i class="fa-solid fa-envelope-open-text"></i>
+                </button>
+            </div>
+            <div class="pagination-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+
+        <!-- SECTION 6: Special Message Letter -->
+        <div class="section" id="sec-5">
+            <div class="glass-card">
+                <div class="script-font" style="font-size: 2.6rem; margin-bottom: 15px;">A Letter For You</div>
+                <div class="letter-content">
+                    Dear Anjali,<br><br>
+                    Always keep smiling, because your smile makes everything beautiful around you. May your life be filled with endless happiness, true love, wonderful memories, and incredible success.<br><br>
+                    Never forget how uniquely special you are! ❤️
+                </div>
+                <button class="magical-btn" onclick="nextSection()" style="margin-top: 20px;">
+                    Final Surprise <i class="fa-solid fa-heart"></i>
+                </button>
+            </div>
+            <div class="pagination-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot active"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+
+        <!-- SECTION 7: Final Screen -->
+        <div class="section" id="sec-6">
+            <div class="glass-card">
+                <div class="giant-heart">💖</div>
+                <h1 style="font-size: 1.7rem; margin-top: 10px;">Made With Love For ANJALI 💗</h1>
+                <p style="margin-top: 10px;">Stay Beautiful, Stay Happy, Always Keep Shining ✨</p>
+                <button class="magical-btn" onclick="replaySurprise()" style="background: linear-gradient(135deg, #ff2a6d 0%, #701c4c 100%);">
+                    <i class="fa-solid fa-rotate-right"></i> Replay Surprise
+                </button>
+            </div>
+            <div class="pagination-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot active"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Navigation Handler
+        let currentSection = 0;
+        const totalSections = 7;
+
+        function nextSection() {
+            if (currentSection < totalSections - 1) {
+                document.getElementById(`sec-${currentSection}`).classList.remove('active');
+                currentSection++;
+                document.getElementById(`sec-${currentSection}`).classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function replaySurprise() {
+            document.getElementById(`sec-${currentSection}`).classList.remove('active');
+            currentSection = 0;
+            document.getElementById(`sec-${currentSection}`).classList.add('active');
+            // Reset gift box
+            document.getElementById('giftIcon').style.transform = 'scale(1)';
+            document.getElementById('giftRevealText').style.display = 'none';
+            document.getElementById('giftNextBtn').style.display = 'none';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Interactive Gift Box
+        function openGiftBox() {
+            const giftIcon = document.getElementById('giftIcon');
+            giftIcon.style.transform = 'scale(1.3) rotate(15deg)';
+            setTimeout(() => {
+                giftIcon.innerHTML = '✨💖✨';
+                document.getElementById('giftRevealText').style.display = 'block';
+                document.getElementById('giftNextBtn').style.display = 'inline-flex';
+            }, 300);
+        }
+
+        // Particle Canvas Animation (Hearts & Soft Glowing Stars)
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + Math.random() * 100;
+                this.size = Math.random() * 6 + 4;
+                this.speedY = Math.random() * 1.0 + 0.4;
+                this.speedX = (Math.random() - 0.5) * 0.6;
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = (Math.random() - 0.5) * 2;
+                this.opacity = Math.random() * 0.7 + 0.3;
+                this.type = Math.random() > 0.3 ? 'heart' : 'star';
+            }
+            update() {
+                this.y -= this.speedY;
+                this.x += this.speedX;
+                this.rotation += this.rotationSpeed;
+                if (this.y < -50) {
+                    this.reset();
+                }
+            }
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate((this.rotation * Math.PI) / 180);
+                ctx.globalAlpha = this.opacity;
+                
+                if (this.type === 'heart') {
+                    ctx.fillStyle = '#ffb3c6';
+                    ctx.beginPath();
+                    let s = this.size * 0.15;
+                    ctx.moveTo(0, s * 3);
+                    ctx.bezierCurveTo(-s * 5, -s * 2, -s * 3, -s * 5, 0, -s * 2);
+                    ctx.bezierCurveTo(s * 3, -s * 5, s * 5, -s * 2, 0, s * 3);
+                    ctx.fill();
+                } else {
+                    ctx.fillStyle = '#ffe6eb';
+                    ctx.beginPath();
+                    for (let i = 0; i < 5; i++) {
+                        ctx.lineTo(Math.cos((18 + i * 72) * Math.PI / 180) * this.size, -Math.sin((18 + i * 72) * Math.PI / 180) * this.size);
+                        ctx.lineTo(Math.cos((54 + i * 72) * Math.PI / 180) * (this.size / 2), -Math.sin((54 + i * 72) * Math.PI / 180) * (this.size / 2));
+                    }
+                    ctx.closePath();
+                    ctx.fill();
+                }
+                ctx.restore();
+            }
+        }
+
+        let particles = [];
+        for (let i = 0; i < 40; i++) {
+            let p = new Particle();
+            p.y = Math.random() * canvas.height;
+            particles.push(p);
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // Clickable Heart Sparkle Burst Effect
+        window.addEventListener('click', function(e) {
+            if(e.target.tagName === 'BUTTON' || e.target.closest('button')) return;
+            
+            for(let i = 0; i < 5; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'click-sparkle';
+                sparkle.innerHTML = Math.random() > 0.4 ? '💖' : '✨';
+                sparkle.style.left = `${e.clientX}px`;
+                sparkle.style.top = `${e.clientY}px`;
+                
+                const tx = (Math.random() - 0.5) * 120;
+                const ty = (Math.random() - 0.5) * 120 - 40;
+                sparkle.style.setProperty('--tx', `${tx}px`);
+                sparkle.style.setProperty('--ty', `${ty}px`);
+                
+                document.body.appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 800);
+            }
+        });
+
+        // Web Audio API Background Chime/Melody Generator
+        let audioCtx = null;
+        let isPlaying = false;
+        let melodyInterval = null;
+
+        function toggleAudio() {
+            const btn = document.getElementById('musicToggle');
+            const icon = document.getElementById('musicIcon');
+
+            if (!isPlaying) {
+                try {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                    if (audioCtx.state === 'suspended') {
+                        audioCtx.resume();
+                    }
+                    isPlaying = true;
+                    btn.classList.add('playing');
+                    icon.className = 'fa-solid fa-volume-high';
+                    startMagicalChimes();
+                } catch(e) {
+                    console.log("Audio not supported");
+                }
+            } else {
+                isPlaying = false;
+                btn.classList.remove('playing');
+                icon.className = 'fa-solid fa-music';
+                if(melodyInterval) clearInterval(melodyInterval);
+                if(audioCtx) audioCtx.close();
+            }
+        }
+
+        function startMagicalChimes() {
+            const notes = [523.25, 587.33, 659.25, 698.46, 783.99, 880.00, 987.77, 1046.50];
+            
+            melodyInterval = setInterval(() => {
+                if(!isPlaying || !audioCtx) return;
+                
+                try {
+                    let osc = audioCtx.createOscillator();
+                    let gain = audioCtx.createGain();
+                    
+                    let freq = notes[Math.floor(Math.random() * notes.length)];
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                    
+                    gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 2.5);
+                    
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 2.5);
+                } catch(e) {}
+            }, 900);
+        }
+    </script>
+</body>
+</html>
